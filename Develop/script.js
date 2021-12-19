@@ -1,5 +1,5 @@
-// Assignment Code
-
+// Assignment Code 
+// Possible choices of characters that a user can use for their password
 const key_strings = {
   lowerCase: 'abcdefghijklmnopqrstuvwxyz',
   upperCase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -7,6 +7,8 @@ const key_strings = {
   symbols: "!\"#$%&'()*+,-./:;<=>?",
 };
 
+
+// Functions for the user to choose criteria for the password
 function generatePassword() {
   var passwordCharSet = "";
 
@@ -17,7 +19,7 @@ function generatePassword() {
     passwordCharSet += key_strings.lowerCase;
   };
 
-  var uppercase = window.confirm("Would you like to use uppercase letters?");
+  var uppercase = window.confirm("Would you like to use UpperCase letters?");
   if (uppercase) {
     passwordCharSet += key_strings.upperCase;
   };
