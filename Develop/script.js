@@ -1,41 +1,47 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
 
-// Possible character choices for the password 
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-var digits = "1234567890";
-var special = "!@#$%^&*()_-+={}[];:'`~<,>.?/|";
+const key_strings = {
+  lowerCase: 'abcdefghijklmnopqrstuvwxyz',
+  upperCase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  numbers: '1234567890',
+  symbols: "!\"#$%&'()*+,-./:;<=>?",
+};
 
-//Questions to be asked to the user for the best password they need 
-function inquiries(){
-  var allChars = [];
-  var resultPass = ""; 
-  
-  var isValid = false;
-  do {
-    var askNumbers = confirm("Does your password need numbers?");
-    var askLowerCase = confirm("Does your password need lower case letters?");
-    var askUpperCase = confirm("Does your password need Upper Case letters?");
-    var length = prompt("Choose password length between 8 and 128 characters");
-    var askSpecial = confirm("Does your password need special characters?");
-    var responses = {
-      length: length,
-      askNumbers: askNumbers,
-      askLowerCase: askLowerCase,
-      askUpperCase: askUpperCase,
-      askSpecial: askSpecial
-    } 
-    if((length < 8)||(length > 128))
-    alert("Choose number between 8 and 128");
-    else if((!askNumbers)&&(!askLowerCase)&&(!askUpperCase)&&(!askSpecial))
-    alert("Must choose at least one type.");
-    else
-    isValid = true;
+function generatePassword() {
+  var passwordCharSet = "";
 
-  } while(!isValid);
-  return responses;
+  var length = window.prompt("Enter a number from 8 to 128 for password length.");
+
+  var lowercase = window.confirm("Would you like to use lowercase letters?");
+  if (lowercase) {
+    passwordCharSet += key_strings.lowerCase;
+  };
+
+  var uppercase = window.confirm("Would you like to use uppercase letters?");
+  if (uppercase) {
+    passwordCharSet += key_strings.upperCase;
+  };
+
+  var symbols = window.confirm("Would you like to use symbols?");
+  if (symbols) {
+    passwordCharSet += key_strings.symbols;
+  };
+
+  var numbers = window.confirm("Would you like to use numbers?");
+  if (numbers) {
+    passwordCharSet += key_strings.numbers;
+  };
+  var password = "";
+  for (let i = 0; i < length; i++) {
+    password += passwordCharSet[Math.floor(Math.random() * passwordCharSet.length)]
+  }
+  return password;
 }
+
+console.log(generatePassword());
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
