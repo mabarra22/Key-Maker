@@ -1,12 +1,11 @@
 // Assignment Code 
 // Possible choices of characters that a user can use for their password
-const key_strings = {
+var key_strings = {
   lowerCase: 'abcdefghijklmnopqrstuvwxyz',
   upperCase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   numbers: '1234567890',
   symbols: "!\"#$%&'()*+,-./:;<=>?",
 };
-
 
 // Functions for the user to choose criteria for the password
 function generatePassword() {
